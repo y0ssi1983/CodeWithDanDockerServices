@@ -1,0 +1,16 @@
+node() {
+   
+   stage('checkout code') {
+       checkout([$class: 'GitSCM', branches: [[name: 'develop']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:lidorg-dev/CodeWithDanDockerServices.git']]])
+   }
+   stage('build') {
+       sh '''export APP_ENV=development && \
+       export DOCKER_ACCT=lidorlg && \
+       docker compose build'''
+   }
+   stage('run Test ') {
+       sh '''export APP_ENV=development && \
+       export DOCKER_ACCT=lidorlg && \
+       docker compose up -d '''
+   }
+}
