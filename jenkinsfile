@@ -1,4 +1,4 @@
-node() {
+node('docker-centos-7') {
    
    stage('checkout code') {
        checkout([$class: 'GitSCM', branches: [[name: 'develop']], extensions: [], userRemoteConfigs: [[credentialsId: 'github', url: 'git@github.com:lidorg-dev/CodeWithDanDockerServices.git']]])
